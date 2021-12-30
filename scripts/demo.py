@@ -46,7 +46,7 @@ def main(args):
 
     # ========= [Optional] download the youtube video ========= #
 
-    if not os.path.isfile(video_folder):
+    if not os.path.isdir(video_folder):
         exit(f'Input video folder \"{video_folder}\" does not exist!')
     
     scene = args.scene
