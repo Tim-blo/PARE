@@ -96,8 +96,7 @@ def main(args):
         joblib.dump(pare_results, os.path.join(output_path, os.path.basename(video_file).replace('.avi', '') + ".pkl"))
         shutil.rmtree(input_image_folder)
 
-
-    logger.info('================= END =================')
+        logger.info('================= END =================')
 
 
 if __name__ == '__main__':
