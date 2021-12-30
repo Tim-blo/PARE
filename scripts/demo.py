@@ -74,8 +74,6 @@ def main(args):
             img_folder=os.path.join(output_path, 'tmp_images'),
             return_info=True
         )
-        output_img_folder = f'{input_image_folder}_output'
-        os.makedirs(output_img_folder, exist_ok=True)
         
         print("Applying PARE estimation to video", idx+1, "on", len(videos))
         total_time = time.time()
