@@ -94,9 +94,8 @@ def main(args):
         logger.info(f'Total FPS (including model loading time): {num_frames / total_time:.2f}.')
 
         logger.info(f'Saving output results to \"{os.path.join(output_path, "pare_output.pkl")}\".')
-        joblib.dump(pare_results, os.path.join(output_path, "pare_output.pkl"))
-
-    # shutil.rmtree(image_folder)
+        joblib.dump(pare_results, os.path.join(output_path, os.path.basename(video_file).replace('.avi', '') + ".pkl"))
+        shutil.rmtree(image_folder)
 
 
     logger.info('================= END =================')
