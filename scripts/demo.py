@@ -58,19 +58,7 @@ def main(args):
     output_path = os.path.join(args.output_folder)
     os.makedirs(output_path, exist_ok=True)
 
-    if os.path.isdir(os.path.join(output_path, 'tmp_images')):
-        input_image_folder = os.path.join(output_path, 'tmp_images')
-        logger.info(f'Frames are already extracted in \"{input_image_folder}\"')
-        num_frames = len(os.listdir(input_image_folder))
-        img_shape = cv2.imread(os.path.join(input_image_folder, '000001.png')).shape
-    else:
-        input_image_folder, num_frames, img_shape = video_to_images(
-            video_file,
-            img_folder=os.path.join(output_path, 'tmp_images'),
-            return_info=True
-        )
-    output_img_folder = f'{input_image_folder}_output'
-    os.makedirs(output_img_folder, exist_ok=True)
+    
 
     logger.add(
         os.path.join(output_path, 'demo.log'),
@@ -80,6 +68,14 @@ def main(args):
     logger.info(f'Demo options: \n {args}')
 
     for idx, video_file in enumerate(videos):
+        input_image_folder, num_frames, img_shape = video_to_images(
+            video_file,
+            img_folder=os.path.join(output_path, 'tmp_images'),
+            return_info=True
+        )
+        output_img_folder = f'{input_image_folder}_output'
+        os.makedirs(output_img_folder, exist_ok=True)
+        
         print("Applying PARE estimation to video", idx+1, "on", len(videos))
         total_time = time.time()
         logger.info(f'Input video number of frames {num_frames}')
