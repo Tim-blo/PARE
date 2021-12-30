@@ -96,7 +96,7 @@ def main(args):
 
         logger.info(f'Saving output results to \"{os.path.join(output_path, "pare_output.pkl")}\".')
         joblib.dump(pare_results, os.path.join(output_path, os.path.basename(video_file).replace('.avi', '') + ".pkl"))
-        shutil.rmtree(image_folder)
+        shutil.rmtree(input_image_folder)
 
 
     logger.info('================= END =================')
