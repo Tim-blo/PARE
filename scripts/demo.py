@@ -62,7 +62,7 @@ def main(args):
     
 
     logger.add(
-        os.path.join(output_path, 'demo.log'),
+        os.path.join('/tmp', 'demo.log'),
         level='INFO',
         colorize=False,
     )
@@ -71,7 +71,7 @@ def main(args):
     for idx, video_file in enumerate(videos):
         input_image_folder, num_frames, img_shape = video_to_images(
             video_file,
-            img_folder=os.path.join(output_path, 'tmp_images'),
+            img_folder=os.path.join('/tmp', os.path.basename(video_file).replace('.', '_')),
             return_info=True
         )
         
