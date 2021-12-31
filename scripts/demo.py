@@ -71,7 +71,6 @@ def main(args):
     for idx, video_file in enumerate(videos):
         input_image_folder, num_frames, img_shape = video_to_images(
             video_file,
-            img_folder=os.path.join('/tmp', os.path.basename(video_file).replace('.', '_')),
             return_info=True
         )
         
