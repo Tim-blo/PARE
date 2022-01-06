@@ -320,11 +320,15 @@ class PARETester:
                     norm_joints2d.append(nj2d.numpy().reshape(-1, 21, 3))
 
                 batch = batch.to(self.device)
+                print('Batch size: ')
+                print(batch.shape)
                 batch_size = batch.shape[0]
                 output = self.model(batch)
 
                 pred_cam.append(output['pred_cam'])  # [:, :, :3].reshape(batch_size, -1))
                 pred_verts.append(output['smpl_vertices'])  # .reshape(batch_size * seqlen, -1, 3))
+                print('Pose shape: ')
+                print(output['pred_pose'].shape)
                 pred_pose.append(output['pred_pose'])  # [:,:,3:75].reshape(batch_size * seqlen, -1))
                 pred_betas.append(output['pred_shape'])  # [:, :,75:].reshape(batch_size * seqlen, -1))
                 pred_joints3d.append(output['smpl_joints3d'])  # .reshape(batch_size * seqlen, -1, 3))
@@ -333,6 +337,8 @@ class PARETester:
             pred_cam = torch.cat(pred_cam, dim=0)
             pred_verts = torch.cat(pred_verts, dim=0)
             pred_pose = torch.cat(pred_pose, dim=0)
+            print('Final pose shape: ')
+            print(pred_pose.shape)
             pred_betas = torch.cat(pred_betas, dim=0)
             pred_joints3d = torch.cat(pred_joints3d, dim=0)
             smpl_joints2d = torch.cat(smpl_joints2d, dim=0)
